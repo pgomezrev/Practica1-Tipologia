@@ -1,0 +1,10 @@
+name: scraping_project
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.12
+  - selenium
+  - beautifulsoup4
+  - lxml
+  - geckodriver
