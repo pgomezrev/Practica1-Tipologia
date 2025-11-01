@@ -43,7 +43,6 @@ def extraer_datos(response, datos_csv):
     path_imagen = html_parseado.find('div', {'id': 'pdp-section-images'}).find_all('img')[0].get('src')
     guardar_imagen('http:' + path_imagen)
 
-    #print(marca, titulo_producto, precio, p_n, estrellas, estrellas_5, estrellas_4, estrellas_3, estrellas_2, estrellas_1)
     datos_csv.append({'Marca' : marca, 'Modelo' : titulo_producto, 'Precio' : precio, 
                       'P/N' : p_n, 'Valoración' : estrellas, 'Valoraciones 5 estrellas' : estrellas_5,
                       'Valoraciones 4 estrellas' : estrellas_4, 'Valoraciones 3 estrellas' : estrellas_3,

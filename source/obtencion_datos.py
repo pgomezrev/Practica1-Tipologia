@@ -1,15 +1,11 @@
-from bs4 import BeautifulSoup as bs
 from selenium import webdriver as wb
 from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.firefox.options import Options
-from selenium.webdriver.common.proxy import Proxy
-from selenium.webdriver.common.proxy import ProxyType
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import StaleElementReferenceException
-from urllib.request import Request, urlopen
-from time import sleep
+
 
 def obtencion_urls(web):
     '''
@@ -25,12 +21,6 @@ def obtencion_urls(web):
     options.page_load_strategy = 'normal'
     options.add_argument("-headless")
     options.add_argument("-private")
-
-    # Opcional: proxy
-    # proxy = Proxy()
-    # proxy.proxy_type = ProxyType.MANUAL
-    # proxy.http_proxy = "http.proxy:1234"
-    # options.proxy = proxy
 
     service = Service("./geckodriver.exe")
     driver = wb.Firefox(service=service, options=options)
@@ -70,10 +60,4 @@ def obtencion_urls(web):
         next_button.click()
 
     driver.quit()
-    #print(res)
     return res
-
-if __name__ == '__main__':
-
-    lista_urls = obtencion_urls('https://www.pccomponentes.com/')
-
