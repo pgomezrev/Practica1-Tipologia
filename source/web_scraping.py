@@ -4,22 +4,29 @@ import os
 import requests
 import pandas as pd
 
-scraper_api_key="4498f114a561c6e7a433fb5a51194227"
-archivo_csv="data/productos.csv"
+url_general = 'https://www.pccomponentes.com/'
+scraper_api_key = "4498f114a561c6e7a433fb5a51194227"
+archivo_csv = "data/productos.csv"
 
-def obtener_dato(web_url):
+def obtencion_datos_web(web):
+    datos_csv = []
+    web_urls = obtencion_urls(web)
+    for web_url in web_urls:
+        obtener_dato(datos_csv, web_url)
+    
+    df = pd.DataFrame(datos_csv)
+    df.to_csv(archivo_csv, index=False, sep=';', encoding='utf-8')
+
+def obtener_dato(datos_csv, web_url):
     session = requests.Session()
     scraper_api_url = f"http://api.scraperapi.com/?api_key={scraper_api_key}&url={web_url}"
     response = requests.get(scraper_api_url)
-    datos_csv = []
 
     if response.status_code == 200:
         extraer_datos(response, datos_csv)
     else:
         print(f"Error {response.status_code} en la peticion a la url {web_url}")
     
-    df = pd.DataFrame(datos_csv)
-    df.to_csv(archivo_csv, index=False, sep=';', encoding='utf-8')
 
 def extraer_datos(response, datos_csv):
     html_parseado = BeautifulSoup(response.text, 'html.parser')
@@ -40,7 +47,9 @@ def extraer_datos(response, datos_csv):
     datos_csv.append({'Marca' : marca, 'Modelo' : titulo_producto, 'Precio' : precio, 
                       'P/N' : p_n, 'Valoración' : estrellas, 'Valoraciones 5 estrellas' : estrellas_5,
                       'Valoraciones 4 estrellas' : estrellas_4, 'Valoraciones 3 estrellas' : estrellas_3,
-                      'Valoraciones 2 estrellas' : estrellas_2, 'Valoraciones 1 estrellas' : estrellas_1});
+                      'Valoraciones 2 estrellas' : estrellas_2, 'Valoraciones 1 estrellas' : estrellas_1})
+    
+    print(f'Producto {titulo_producto} añadido a la lista')
 
 def guardar_imagen(path_imagen):
     response = requests.get(path_imagen)
@@ -61,10 +70,7 @@ def borrar_datos_ejecucion_previa():
 
 if __name__ == '__main__':
     borrar_datos_ejecucion_previa()
-    #web_urls = obtencion_urls('https://www.pccomponentes.com/')
-    #for web_url in web_urls:
-    #    obtener_dato(web_url)
-    obtener_dato("https://www.pccomponentes.com/apple-iphone-16-pro-max-256gb-titanio-negro-libre")
-
+    obtencion_datos_web(url_general)
+    
 
     

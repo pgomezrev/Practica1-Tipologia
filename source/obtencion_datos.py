@@ -70,7 +70,7 @@ def obtencion_urls(web):
         next_button.click()
 
     driver.quit()
-    print(res)
+    #print(res)
     return res
 
 if __name__ == '__main__':
