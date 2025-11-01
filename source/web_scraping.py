@@ -43,20 +43,18 @@ def obtener_dato(datos_csv, web_url):
 
     # si la petición ha ido correcta, guardamos los datos
     if response.status_code == 200:
-        datos_csv.append(extraer_datos(response))
+        extraer_datos(response, datos_csv)
     else:
         print(f"Error {response.status_code} en la peticion a la url {web_url}")
     
 
-def extraer_datos(response):
+def extraer_datos(response, datos_csv):
     '''
     Parseamos el HTML y sacamos los datos e imagenes necesarias.
 
     Args:
         response: respuesta de la petición http previamente hecha
-
-    Returns:
-        diccionario con la información del producto
+        datos_csv: lista que contiene los diccionarios de cada producto
     '''
     # parseamos HTML
     html_parseado = BeautifulSoup(response.text, 'html.parser')
@@ -76,10 +74,10 @@ def extraer_datos(response):
     guardar_imagen('http:' + path_imagen)
 
     # añadimos la lista de productos la información sacada
-    return {'Marca' : marca, 'Modelo' : titulo_producto, 'Precio' : precio, 
+    datos_csv.append({'Marca' : marca, 'Modelo' : titulo_producto, 'Precio' : precio, 
                       'P/N' : p_n, 'Valoración' : estrellas, 'Valoraciones 5 estrellas' : estrellas_5,
                       'Valoraciones 4 estrellas' : estrellas_4, 'Valoraciones 3 estrellas' : estrellas_3,
-                      'Valoraciones 2 estrellas' : estrellas_2, 'Valoraciones 1 estrellas' : estrellas_1}
+                      'Valoraciones 2 estrellas' : estrellas_2, 'Valoraciones 1 estrellas' : estrellas_1})
     
     print(f'Producto {titulo_producto} añadido a la lista')
 
