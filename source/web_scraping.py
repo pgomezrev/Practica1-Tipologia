@@ -6,7 +6,8 @@ import pandas as pd
 
 url_general = 'https://www.pccomponentes.com/'
 scraper_api_key = "4498f114a561c6e7a433fb5a51194227"
-archivo_csv = "data/productos.csv"
+archivo_csv = "dataset/productos.csv"
+path_imagenes = 'dataset/images'
 
 def obtencion_datos_web(web):
     datos_csv = []
@@ -53,7 +54,7 @@ def extraer_datos(response, datos_csv):
 def guardar_imagen(path_imagen):
     response = requests.get(path_imagen)
     if response.status_code == 200:
-        with open(os.path.join('data/images', path_imagen.split('/')[-1]), 'wb') as file:
+        with open(os.path.join(path_imagenes, path_imagen.split('/')[-1]), 'wb') as file:
             file.write(response.content)
     else:
         print(f'Error al guardar la imagen del producto {path_imagen.split('/')[-1]}')  
@@ -62,10 +63,9 @@ def borrar_datos_ejecucion_previa():
     if os.path.exists(archivo_csv):
         os.remove(archivo_csv)
     
-    imagenes = 'data/images'
-    if os.path.exists(imagenes):
-        for archivo in os.listdir(imagenes):
-            os.remove(os.path.join(imagenes, archivo))
+    if os.path.exists(path_imagenes):
+        for archivo in os.listdir(path_imagenes):
+            os.remove(os.path.join(path_imagenes, archivo))
 
 if __name__ == '__main__':
     borrar_datos_ejecucion_previa()
