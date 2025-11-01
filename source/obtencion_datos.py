@@ -7,6 +7,9 @@ from selenium.webdriver.common.proxy import ProxyType
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import StaleElementReferenceException
+from urllib.request import Request, urlopen
+from time import sleep
 
 def obtencion_urls(web):
     '''
@@ -47,8 +50,19 @@ def obtencion_urls(web):
 
     # Extracción de URLs
     for i in range(2):
-        container_list = wait.until(EC.presence_of_element_located((By.ID,"category-list-product-grid")))
-        lista_hrefs = [movil.get_attribute('href') for movil in container_list.find_elements(By.CSS_SELECTOR, ".link-module_wrapper__DMT-Z.link-module_notDecorated__B-zTb.link-O9JV8C")]
+        for _ in range(3):  # reintenta hasta 3 veces
+            try:
+                lista_hrefs = [
+                    movil.get_attribute("href")
+                    for movil in WebDriverWait(driver, 10).until(
+                        EC.presence_of_all_elements_located(
+                            (By.CSS_SELECTOR, ".link-module_wrapper__DMT-Z.link-module_notDecorated__B-zTb.link-O9JV8C")
+                        )
+                    )
+                ]
+                break  # si funciona, sal del bucle
+            except StaleElementReferenceException:
+                continue
         res.extend(lista_hrefs)
 
         # Click en siguiente página
@@ -61,4 +75,5 @@ def obtencion_urls(web):
 
 if __name__ == '__main__':
 
-    obtencion_urls('https://www.pccomponentes.com/')
+    lista_urls = obtencion_urls('https://www.pccomponentes.com/')
+
