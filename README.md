@@ -94,6 +94,12 @@ conda activate scraping_project
 python web_scraping.py
 ```
 
+5.3 Generar las gráficas
+
+```bash
+python crear_graficas.py
+```
+
 Crea el archivo productos.csv y descarga las imágenes en dataset/images/.
 
 ## 6. Parámetros y Personalización
