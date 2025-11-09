@@ -40,19 +40,21 @@ El flujo de trabajo abarca desde la **recolección automática de URLs**, pasand
 
 ## 3. Estructura del Repositorio
 
-├── .gitignore # Define los archivos que no deben subirse al repositorio
-├── README.md # Información general del proyecto
-└── source/ # Carpeta principal del código fuente y los datos
-├── dataset/
-│ ├── graficos/ # Gráficos generados a partir del CSV
-│ ├── images/ # Imágenes de los productos procesados
-│ └── productos.csv # Datos extraídos mediante web scraping
-│
-├── environment.yml # Configuración del entorno Python (librerías y dependencias)
-├── geckodriver.exe # Ejecutable necesario para Selenium
-├── obtencion_datos.py # Obtiene las URLs de los productos a procesar
-├── web_scraping.py # Extrae información e imágenes de los productos y genera el CSV
-└── crear_graficas.py # Genera gráficos a partir del CSV generado
+.
+├── .gitignore               # Archivos y carpetas excluidos del control de versiones
+├── README.md                # Información general del proyecto
+└── source/                  # Carpeta principal del código fuente y los datos
+    ├── dataset/
+    │   ├── graficos/        # Gráficos generados a partir del CSV
+    │   ├── images/          # Imágenes de los productos procesados
+    │   └── productos.csv    # Datos extraídos mediante web scraping
+    │
+    ├── environment.yml      # Configuración del entorno Python (librerías y dependencias)
+    ├── geckodriver.exe      # Ejecutable necesario para Selenium
+    ├── obtencion_datos.py   # Obtiene las URLs de los productos a procesar
+    ├── web_scraping.py      # Extrae información e imágenes de los productos y genera el CSV
+    └── crear_graficas.py    # Genera gráficos a partir del CSV generado
+
 
 
 ---
