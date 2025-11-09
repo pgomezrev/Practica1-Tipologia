@@ -37,25 +37,30 @@ Se emplean herramientas de **Python** y librerías de automatización (como *Sel
 El flujo de trabajo abarca desde la **recolección automática de URLs**, pasando por la **extracción de datos e imágenes**.
 
 ---
-
 ## 3. Estructura del Repositorio
 
-.
-├── .gitignore               # Archivos y carpetas excluidos del control de versiones
-├── README.md                # Información general del proyecto
-└── source/                  # Carpeta principal del código fuente y los datos
-    ├── dataset/
-    │   ├── graficos/        # Gráficos generados a partir del CSV
-    │   ├── images/          # Imágenes de los productos procesados
-    │   └── productos.csv    # Datos extraídos mediante web scraping
-    │
-    ├── environment.yml      # Configuración del entorno Python (librerías y dependencias)
-    ├── geckodriver.exe      # Ejecutable necesario para Selenium
-    ├── obtencion_datos.py   # Obtiene las URLs de los productos a procesar
-    ├── web_scraping.py      # Extrae información e imágenes de los productos y genera el CSV
-    └── crear_graficas.py    # Genera gráficos a partir del CSV generado
+El repositorio se organiza de la siguiente manera:
 
+### Archivos en la raíz del proyecto
 
+- **.gitignore** → Define los archivos y carpetas que no deben incluirse en el control de versiones.  
+- **README.md** → Contiene la información general y documentación del proyecto.  
+- **source/** → Carpeta principal que agrupa el código fuente y los datos generados o recopilados.
+
+---
+
+### Contenido de la carpeta `source/`
+
+- **dataset/** → Contiene los resultados obtenidos del proceso de scraping y análisis.
+  - **graficos/** → Carpeta donde se almacenan los gráficos generados a partir de los datos del CSV.  
+  - **images/** → Carpeta con las imágenes descargadas de los productos procesados.  
+  - **productos.csv** → Archivo que almacena la información estructurada extraída mediante web scraping.
+
+- **environment.yml** → Archivo que define el entorno de trabajo de Python, incluyendo las librerías y versiones necesarias para ejecutar el proyecto.  
+- **geckodriver.exe** → Ejecutable requerido por Selenium para la automatización del navegador Firefox.  
+- **obtencion_datos.py** → Script encargado de recopilar las URLs de los productos que posteriormente serán procesados.  
+- **web_scraping.py** → Script principal de extracción de datos. Utiliza las URLs obtenidas para recolectar información e imágenes de los productos, y genera el archivo `productos.csv`.  
+- **crear_graficas.py** → Script que analiza el archivo CSV generado y produce visualizaciones gráficas a partir de los datos recopilados.
 
 ---
 
