@@ -86,43 +86,52 @@ Para preparar el entorno Python, ejecutar:
 ```bash
 conda env create -f environment.yml
 conda activate scraping_project
-
+```
 5.2 Realizar el scraping
 
+```bash
+
 python web_scraping.py
+```
 
 Crea el archivo productos.csv y descarga las imágenes en dataset/images/.
 
-6. Parámetros y Personalización
+## 6. Parámetros y Personalización
 
-Actualmente, los scripts no requieren parámetros externos.
-Sin embargo, el usuario puede personalizar:
+Actualmente, los scripts no requieren parámetros externos para su ejecución.  
+No obstante, el usuario puede personalizar distintos aspectos del proyecto según sus necesidades:
 
-    La fuente o dominio de las URLs.
+- **Fuente o dominio de las URLs:** permite definir desde qué página web se extraerán los datos.  
+- **Número de productos a analizar:** configurable para ajustar la cantidad de elementos procesados.  
+- **Formato de salida del dataset o de las gráficas:** se puede modificar el tipo de archivo o el estilo visual de las representaciones.
 
-    El número de productos a analizar.
+Estas configuraciones se encuentran dentro de los propios scripts Python y pueden adaptarse fácilmente editando las variables definidas al inicio de cada archivo.
 
-    El formato de salida del dataset o de las gráficas.
+---
 
-Estas configuraciones se encuentran dentro de los propios scripts Python.
+## 7. Resultados Generados
 
-7. Resultados Generados
+El proyecto produce los siguientes resultados principales:
 
-El proyecto produce los siguientes resultados:
+- **`productos.csv`** → Contiene los datos estructurados extraídos mediante web scraping.  
+- **`images/`** → Carpeta que almacena las imágenes descargadas de los productos procesados.  
+- **`graficos/`** → Carpeta con los gráficos generados automáticamente a partir del archivo CSV.
 
-    Archivo productos.csv con los datos estructurados.
+Estos recursos permiten **analizar el comportamiento del mercado y las características de los productos** de manera visual e interactiva.
 
-    Carpeta images/ con las imágenes de cada producto.
+---
 
-Estos recursos permiten analizar el comportamiento del mercado y las características de los productos de forma visual e interactiva.
+## 8. DOI del Dataset
 
-8. DOI del Dataset
+El dataset final ha sido publicado en **Zenodo**, disponible en el siguiente enlace:
 
-El dataset final ha sido publicado en Zenodo, disponible en el siguiente enlace:
+🔗 **[https://doi.org/10.5281/zenodo.17566073](https://doi.org/10.5281/zenodo.17566073)**  
 
-🔗 https://doi.org/10.XXXX/zenodo.XXXXXXX
+---
 
-9. Licencia
+## 9. Licencia
 
-Este proyecto se distribuye con fines académicos y de investigación.
+Este proyecto se distribuye con fines **académicos y de investigación**.  
 El código puede ser utilizado, modificado o extendido citando la fuente original y respetando las licencias de las herramientas utilizadas.
+
+---
