@@ -10,3 +10,5 @@ dependencies:
   - geckodriver
   - requests
   - pandas
+  - seaborn
+  - matplotlib
